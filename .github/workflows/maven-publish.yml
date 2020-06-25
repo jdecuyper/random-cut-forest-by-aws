@@ -24,11 +24,11 @@ jobs:
         server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: echo mvn -B package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
       #run: mvn deploy --file pom.xml
-      run: echo ${GITHUB_REF} MAVEN_USERNAME MAVEN_PASSWORD
+      run: echo ${GITHUB_REF} ${{ secrets.OSSRH_USERNAME }} ${{ secrets.OSSRH_TOKEN }}
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
